@@ -7,6 +7,7 @@ return {
     })
     -- Optional: keymap to open Oil in the current directory
     vim.keymap.set("n", "<leader>pv", require("oil").open, { desc = "Open parent directory (Oil)" })
+    vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory (Oil)" })
   end,
 }
 
