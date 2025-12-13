@@ -1,0 +1,17 @@
+[general]
+import = ["~/.config/alacritty/themes/catppuccin-mocha.toml"]
+
+[colors.primary]
+background = "#1E1E2E"
+foreground = "#CDD6F4"
+
+[font]
+size = 12
+
+[font.normal]
+family = "FiraCode Nerd Font"
+style = "Regular"
+
+[window]
+opacity = 0.85
+
