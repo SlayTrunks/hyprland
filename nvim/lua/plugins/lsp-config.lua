@@ -16,18 +16,27 @@ return {
         config = function()
             require("mason-lspconfig").setup({
                 ensure_installed = {
-                    "lua_ls",
-                    "ts_ls",
-                    "tailwindcss",
-                    "prismals",
-                    "rust_analyzer",
-                    "cssls",
-                    "emmet_ls",
-                    "eslint",
-                    "graphql",
+                    "gopls", -- Go (essential now that you're using Go)
+                    "ts_ls", -- TypeScript/JavaScript (modern name)
+                    "pyright", -- Python (fast & type-aware, better than pylsp for most)
+                    "lua_ls", -- Lua (Neovim config)
+                    "rust_analyzer", -- Rust
+
+                    -- Web/Frontend
                     "html",
+                    "cssls",
+                    "tailwindcss",
+                    "emmet_ls",
+                    "eslint", -- ESLint as LSP (code actions, fixes)
                     "jsonls",
-                    "nextls",
+                    "graphql",
+
+                    -- Framework/Backend
+                    "prismals", -- Prisma
+                    "nextls", -- Next.js specific (Elixir-based)
+
+                    -- Optional but useful (you had them manually)
+                    "pylsp",
                 },
             })
         end,
@@ -35,7 +44,7 @@ return {
     {
         "neovim/nvim-lspconfig",
         lazy = false,
-        
+
         config = function()
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
             local lspconfig = require("lspconfig")
@@ -49,12 +58,12 @@ return {
             })
 
             lspconfig.ts_ls.setup({
-                capabilities = capabilities
+                capabilities = capabilities,
             })
 
             lspconfig.rust_analyzer.setup({
-                    capabilities = capabilities,
-                 settings = {
+                capabilities = capabilities,
+                settings = {
                     ["rust-analyzer"] = {
                         inlayHints = {
                             enable = true,
@@ -77,8 +86,8 @@ return {
                 },
             })
             lspconfig.tailwindcss.setup({
-                    capabilities = capabilities,
-                 on_attach = function(client, bufnr)
+                capabilities = capabilities,
+                on_attach = function(client, bufnr)
                     require("tailwind-highlight").setup(client, bufnr, {
                         single_column = false,
                         mode = "background",
